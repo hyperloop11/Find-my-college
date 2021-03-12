@@ -1,23 +1,12 @@
-from django.shortcuts import render
-
+from django.shortcuts import render, HttpResponse
+from  .models import College, Review
 # Create your views here.
 
-colleges = [
-    {
-        'name': 'IIT(ISM)',
-        'image': 'abc.jpg',
-        'ranking': 1
-    },
-    {
-        'name': 'IIT(ISM)',
-        'image': 'abc.jpg',
-        'ranking': 2
-    }
-]
-
 def home(request):
-    context={
-        'colleges': colleges
+    context = {
+        'colleges': College.objects.all()
     }
     return render(request, 'college/home.html', context)
-    #return HttpResponse('<h1>Hello</h1>')
+
+def review_home(request):
+    return HttpResponse('<h1>Reviews home</h1>')

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     #own apps
     'college.apps.CollegeConfig',
+    'users.apps.UsersConfig',
     #own apps ends
     'django.contrib.admin',
     'django.contrib.auth',

@@ -1,4 +1,15 @@
 {% extends 'college/base.html' %}
 {% block content %}
-<h1>Hello World</h1>
+{% for college in colleges %}
+    <article class="media content-section">
+        <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ college.rank}}</a>
+        </div>
+        <img href="{{ college.image.url }}">
+        <h2><a class="article-title" href="#">{{ college.name }}</a></h2>
+        <p class="article-content">{{ college.discription }}</p>
+        </div>
+    </article>
+{% endfor %}
 {% endblock %}
