@@ -9,6 +9,7 @@
             <h2><a class="article-title" href="#">{{ college.name }}</a></h2>
             <p class="article-content">Address :{{ college.address }}</p>
             <p class="article-content">Website :{{ college.website }}</p>
+            <p> Stars: {{college.review_set.stars.count}} </p>
         </div>
     </article>
     <article class="media content-section">
