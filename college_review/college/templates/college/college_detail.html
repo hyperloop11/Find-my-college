@@ -3,33 +3,45 @@
     <article class="media content-section">
         <div class="media-body">
             <div class="article-metadata">
-                <a class="mr-2" href="#"></a>{{ college.rank}}
+               <b> <a class="mr-2" href="#"></a>{{ college.rank}}</b>
             </div>
-            <img href="{{ college.image.url }}">
-            <h2><a class="article-title" href="#">{{ college.name }}</a></h2>
+            
+            <img src="{{ college.image.url }}" width="650" height="333">
+            <h2 style="text-align: center;"><a class="article-title" href="#">{{ college.name }}</a></h2>
             <p class="article-content">Address :{{ college.address }}</p>
             <p class="article-content">Website :{{ college.website }}</p>
-            <p> Stars: {{college.review_set.stars.count}} </p>
+            <p> Stars: {{college.average_stars}} out of 5 </p>
+            {% if college in user.wishlist.college %}
+                <button data-college={{college.id}} data-action="add" class="btn btn-outline-info update-wishlist" href="#">Remove form Wishlist</button>
+            {% else %}
+                 <button data-college={{college.id}} data-action="add" class="btn btn-outline-info update-wishlist" href="#">Remove from Wishlist</button>
+            {% endif %}
         </div>
     </article>
     <article class="media content-section">
         <div class="media-body">
+            <b>Description</b>
             <p class="article-content">{{ college.discription }}</p>
         </div>
     </article>
     <!--Ratings-->
     <article class="media content-section">
-            <p class="article-content">The different ratings: academics, etc</p>
-        
+          <b>Category based Ratings</b></br>
+        <br></br>
         <div class="media-body">
-            <p>Academics: {{college.average_academics}}</p>
-        <p>Campus: {{college.average_campus}}</p>
-        <p>Mess Food: {{college.average_mess_food}}</p>
-        <p>Placements: {{college.average_placements}}</p>
-        <p>Senior Junior Interaction: {{college.average_senior_junior_interaction}}</p>
-        <p>Coding Culture: {{college.average_coding_culture}}</p>
-        <a href="#">Add a rating</a>
+            <br>
+            <div style="align-items: left;">
+                <ul>
+         <li style="text-align: left;"><div >Academics: {{college.average_academics}}</div></li>
+       <li> <p  style="text-align: left;">Campus: {{college.average_campus}}</p></li>
+       <li> <p  style="text-align: left;">Mess Food: {{college.average_mess_food}}</p></li>
+       <li> <p  style="text-align: left;">Placements: {{college.average_placements}}</p></li>
+       <li> <p>Senior Junior Interaction: {{college.average_senior_junior_interaction}}</p></li>
+       <li> <p>Coding Culture: {{college.average_coding_culture}}</p></li>
+      <li>  <a href="{% url 'rating-create' %}">Add a rating</a></li>
         </div>
+    </ul>
+    </div>
     </article>
     <!--How to get in-->
     <article class="media content-section">
@@ -41,14 +53,16 @@
     <article class="media content-section">
         {% for review in college.review_set.all %}
         <div class="media-body">
+            <p>{{ review.author_year }} Year Student</p>
+            <p>{{ review.date_posted }}</p>
             <h3>{{ review.title }}</h3>
             <p>{{ review.content }}</p>
-            <p>{{ review.date_posted }}</p>
-            <p>{{ review.author_year }}</p>
+            <hr>
         </div>
         {% endfor %}
+        <br></br>
         <div class="media-body">
-            <a href="#">Add a review!</a>
+            <a href="{% url 'review-create' %}">Add a review!</a>
         </div>
     </article>
 {% endblock %}

@@ -96,3 +96,10 @@ class Review(models.Model):
     def __str__(self):
         return self.title
 
+class Wishlist(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
+    college = models.ManyToManyField(College)
+
+    def __str__(self):
+        return f'{self.user.username} Wishlist'
+

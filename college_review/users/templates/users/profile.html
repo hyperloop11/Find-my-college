@@ -2,12 +2,32 @@
 {% block content %}
 <div class="content-section">
     <div class="media">
-      <img class="rounded-circle account-img" src="{{user.Profile.image.url}}">
+      <img class="rounded-circle account-img" src="{{user.profile.image.url}}">
       <div class="media-body">
-        <h2 class="account-heading">{{user.username}}</h2>
+        <h1 class="account-heading">{{user.username}}</h1>
         <p class="text-secondary">{{user.email}}</p>
       </div>
     </div>
-    <!-- FORM HERE -->
+</div>
+  {% for college in colleges %}
+  <div class="content-section">
+    <h3>{{college.name}}</h3>
+    <p>Website: {{ college.website }}</p>
+    <button class="btn btn-outline success" href="{% url 'college-detail' college.id %}">Details</button>
   </div>
+  {% endfor %}
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
 {% endblock content %}

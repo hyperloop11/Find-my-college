@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponse
 from  .models import College, Review, Rating
 from django.views.generic import ListView, DetailView, CreateView
+from django.http import JsonResponse
+import json
 # Create your views here.
 
 def home(request):
@@ -8,7 +10,7 @@ def home(request):
     #     'colleges': College.objects.all()
     # }
     # return render(request, 'college/home.html', context)
-    return HttpResponse('<h1>Landing</h1>')
+    return render(request, 'college/index.html')
 
 class CollegeListView(ListView):
     model = College
@@ -33,3 +35,11 @@ class ReviewCreateView(CreateView):
 
 # class ReviewListView(ListView):
 #     model = Review.objects.filter_by(related_college)
+
+def update_item(request):
+    data = json.loads(request.body)
+    collegeId=data['collegeId']
+    college = College.objects.get(id=collegeId)
+    user = request.user
+    user.Wishlist.add(college)
+    return JsonResponse('Item was added', safe=False)
