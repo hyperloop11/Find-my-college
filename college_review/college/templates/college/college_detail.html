@@ -1,0 +1,53 @@
+{% extends 'college/base.html' %}
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#"></a>{{ college.rank}}
+            </div>
+            <img href="{{ college.image.url }}">
+            <h2><a class="article-title" href="#">{{ college.name }}</a></h2>
+            <p class="article-content">Address :{{ college.address }}</p>
+            <p class="article-content">Website :{{ college.website }}</p>
+        </div>
+    </article>
+    <article class="media content-section">
+        <div class="media-body">
+            <p class="article-content">{{ college.discription }}</p>
+        </div>
+    </article>
+    <!--Ratings-->
+    <article class="media content-section">
+            <p class="article-content">The different ratings: academics, etc</p>
+        
+        <div class="media-body">
+            <p>Academics: {{college.average_academics}}</p>
+        <p>Campus: {{college.average_campus}}</p>
+        <p>Mess Food: {{college.average_mess_food}}</p>
+        <p>Placements: {{college.average_placements}}</p>
+        <p>Senior Junior Interaction: {{college.average_senior_junior_interaction}}</p>
+        <p>Coding Culture: {{college.average_coding_culture}}</p>
+        <a href="#">Add a rating</a>
+        </div>
+    </article>
+    <!--How to get in-->
+    <article class="media content-section">
+        <div class="media-body">
+            <p class="article-content">{{ college.how_to_get_in }}</p>
+        </div>
+    </article>
+    <!--All Reviews-->
+    <article class="media content-section">
+        {% for review in college.review_set.all %}
+        <div class="media-body">
+            <h3>{{ review.title }}</h3>
+            <p>{{ review.content }}</p>
+            <p>{{ review.date_posted }}</p>
+            <p>{{ review.author_year }}</p>
+        </div>
+        {% endfor %}
+        <div class="media-body">
+            <a href="#">Add a review!</a>
+        </div>
+    </article>
+{% endblock %}
